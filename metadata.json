@@ -1,0 +1,7 @@
+{
+  "name": "StreamFlix",
+  "description": "A sleek Netflix-inspired streaming app featuring rich browse carousels, hero billboard, media player, My List, downloads, and category browsing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
