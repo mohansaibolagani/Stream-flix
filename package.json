@@ -1,0 +1,13 @@
+﻿{
+  "name": "stream-flix",
+  "version": "1.0.0",
+  "description": "StreamFlix - Sleek Netflix-inspired streaming web app & Android APK showcase",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Build successful'",
+    "start": "npx serve -s . -l 3000"
+  },
+  "keywords": ["netflix", "streaming", "android", "compose", "vercel", "render"],
+  "author": "mohansaibolagani",
+  "license": "MIT"
+}

@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StreamFlix - Watch TV Shows Online, Watch Movies Online</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍿</text></svg>">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="nav-left">
+      <div class="brand-logo" onclick="filterBySection('all')">STREAMFLIX</div>
+      <nav class="nav-links">
+        <button class="nav-btn active" data-filter="all" onclick="filterBySection('all')">Home</button>
+        <button class="nav-btn" data-filter="tv" onclick="filterBySection('tv')">TV Shows</button>
+        <button class="nav-btn" data-filter="movies" onclick="filterBySection('movies')">Movies</button>
+        <button class="nav-btn" data-filter="upcoming" onclick="filterBySection('upcoming')">New & Hot</button>
+        <button class="nav-btn" data-filter="mylist" onclick="filterBySection('mylist')">My List <span id="my-list-count" class="badge-count">0</span></button>
+      </nav>
+    </div>
+
+    <div class="nav-right">
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="search-input" placeholder="Titles, cast, genres..." oninput="handleSearch(this.value)" />
+      </div>
+
+      <div class="categories-dropdown">
+        <select id="genre-select" onchange="handleGenreSelect(this.value)">
+          <option value="">Categories</option>
+          <option value="Sci-Fi">Sci-Fi</option>
+          <option value="Action">Action</option>
+          <option value="Thriller">Thriller</option>
+          <option value="Drama">Drama</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Anime">Anime</option>
+          <option value="Mystery">Mystery</option>
+          <option value="Comedy">Comedy</option>
+        </select>
+      </div>
+
+      <a href="#download-apk" class="apk-badge-btn" onclick="showApkModal()">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9996.4482.9996.9993.0001.5511-.4486.9997-.9996.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.996-3.4572c.156-.2702.0632-.6153-.207-.7713-.2705-.156-.6153-.0632-.7713.207l-2.0232 3.5042C15.3023 8.1643 13.6997 7.8 12 7.8s-3.3023.3643-4.882 1.0041L5.0948 5.3c-.156-.2702-.5008-.363-.7713-.207-.2702.156-.363.5011-.207.7713l1.996 3.4572C2.6845 11.236 0 15.263 0 19.8h24c0-4.537-2.6845-8.564-6.1185-10.4786"/>
+        </svg>
+        <span>Android App</span>
+      </a>
+
+      <div class="profile-avatar" title="Alex">
+        <span>😎</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Billboard -->
+  <section class="billboard" id="billboard">
+    <div class="billboard-backdrop" id="billboard-backdrop"></div>
+    <div class="billboard-gradient-bottom"></div>
+    <div class="billboard-gradient-left"></div>
+
+    <div class="billboard-content">
+      <div class="billboard-badge" id="billboard-badge">TOP 10 IN TV SHOWS TODAY</div>
+      <h1 class="billboard-title" id="billboard-title">Stranger Things</h1>
+      <p class="billboard-description" id="billboard-desc">
+        When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.
+      </p>
+
+      <div class="billboard-meta">
+        <span class="match-score" id="billboard-match">98% Match</span>
+        <span class="rating-tag" id="billboard-rating">TV-MA</span>
+        <span class="meta-duration" id="billboard-duration">4 Seasons</span>
+        <span class="meta-genres" id="billboard-genres">Sci-Fi • Suspenseful • Horror</span>
+      </div>
+
+      <div class="billboard-actions">
+        <button class="btn btn-primary" onclick="playBillboard()">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          Play Trailer
+        </button>
+        <button class="btn btn-secondary" onclick="openBillboardDetail()">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          More Info
+        </button>
+        <button class="btn btn-icon" id="billboard-mylist-btn" onclick="toggleBillboardMyList()" title="Add to My List">
+          <svg id="billboard-mylist-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Media Rows Content -->
+  <main class="content-container" id="main-content">
+    <!-- Rows will be dynamically rendered here -->
+  </main>
+
+  <!-- Search Results Container (Hidden by default) -->
+  <div class="search-results-section" id="search-results" style="display: none;">
+    <h2 class="section-heading" id="search-heading">Search Results</h2>
+    <div class="media-grid" id="search-grid"></div>
+  </div>
+
+  <!-- Detail Modal Dialog -->
+  <div class="modal-overlay" id="detail-modal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-content" id="modal-container">
+      <button class="modal-close-btn" onclick="closeModal()">×</button>
+      <div class="modal-header-media">
+        <img id="modal-backdrop" src="" alt="" />
+        <div class="modal-header-gradient"></div>
+        <div class="modal-header-actions">
+          <h2 id="modal-title"></h2>
+          <div class="actions-row">
+            <button class="btn btn-primary" id="modal-play-btn" onclick="playCurrentModalMedia()">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              Play
+            </button>
+            <button class="btn btn-icon" id="modal-mylist-btn" onclick="toggleModalMyList()">
+              <svg id="modal-mylist-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-details-left">
+          <div class="modal-meta-chips">
+            <span class="match-score" id="modal-match"></span>
+            <span class="meta-year" id="modal-year"></span>
+            <span class="rating-tag" id="modal-rating"></span>
+            <span class="meta-duration" id="modal-duration"></span>
+            <span class="badge-hd">HD</span>
+          </div>
+          <p class="modal-description" id="modal-desc"></p>
+        </div>
+        <div class="modal-details-right">
+          <p class="meta-field"><strong>Cast:</strong> <span id="modal-cast"></span></p>
+          <p class="meta-field"><strong>Genres:</strong> <span id="modal-genres"></span></p>
+          <p class="meta-field"><strong>Director:</strong> <span id="modal-director"></span></p>
+        </div>
+      </div>
+
+      <div class="modal-episodes-section" id="modal-episodes-section">
+        <h3 class="episodes-header">Episodes</h3>
+        <div class="episodes-list" id="modal-episodes-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Player Modal -->
+  <div class="video-modal-overlay" id="video-modal">
+    <div class="video-modal-content">
+      <div class="video-player-header">
+        <h3 id="video-player-title">Now Playing</h3>
+        <button class="video-close-btn" onclick="closeVideoPlayer()">✕</button>
+      </div>
+      <div class="video-wrapper">
+        <video id="main-video" controls autoplay>
+          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <!-- Android APK Download Modal -->
+  <div class="modal-overlay" id="apk-modal" onclick="closeApkModalOnBackdrop(event)">
+    <div class="apk-modal-card">
+      <button class="modal-close-btn" onclick="closeApkModal()">×</button>
+      <div class="apk-icon-circle">📱</div>
+      <h2>Get StreamFlix for Android</h2>
+      <p>StreamFlix is built natively with Kotlin & Jetpack Compose for Android. You can install the native mobile app on any Android device.</p>
+      
+      <div class="apk-features">
+        <div class="apk-feat">⚡ 100% Native Jetpack Compose</div>
+        <div class="apk-feat">💾 Room Offline Database & Downloads</div>
+        <div class="apk-feat">🎬 Hardware-accelerated Video Streaming</div>
+      </div>
+
+      <div class="apk-action-group">
+        <a id="apk-download-link" href="https://github.com/mohansaibolagani/Stream-flix/releases" target="_blank" class="btn btn-primary btn-block">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download APK from GitHub Releases
+        </a>
+        <a href="https://github.com/mohansaibolagani/Stream-flix" target="_blank" class="btn btn-secondary btn-block">
+          View Source Repository on GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="https://github.com/mohansaibolagani/Stream-flix" target="_blank">GitHub Repository</a>
+      <a href="#deploy-vercel" onclick="alert('Ready for Vercel & Render')">Vercel & Render Ready</a>
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#terms">Terms of Use</a>
+    </div>
+    <p class="footer-credit">© 2026 StreamFlix. Designed for Web (Vercel & Render) and Native Android (Jetpack Compose).</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
