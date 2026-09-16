@@ -1,6 +1,6 @@
 ﻿services:
   - type: web
-    name: stream-flix
+    name: streamflix-web
     env: static
     buildCommand: ""
     staticPublishPath: .

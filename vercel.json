@@ -1,6 +1,5 @@
 ﻿{
   "version": 2,
-  "name": "stream-flix",
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
