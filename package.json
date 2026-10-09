@@ -1,13 +1,35 @@
 ﻿{
   "name": "streamflix-web",
-  "version": "1.0.0",
-  "description": "StreamFlix - Sleek Netflix-inspired streaming web app & Android APK showcase",
+  "version": "2.0.0",
+  "description": "StreamFlix - OTT Streaming Platform with Authentication, User Dashboard, Admin Dashboard & User Management",
+  "main": "server.js",
   "scripts": {
-    "dev": "npx serve .",
-    "build": "echo 'Build successful'",
-    "start": "npx serve -s . -l 3000"
+    "start": "node server.js",
+    "dev": "node server.js",
+    "seed:admin": "node server/seed/seedAdmin.js",
+    "test": "node test/auth-role.test.js",
+    "build": "echo 'Build successful'"
   },
-  "keywords": ["netflix", "streaming", "android", "compose", "vercel", "render"],
+  "keywords": [
+    "streamflix",
+    "netflix",
+    "ott",
+    "streaming",
+    "authentication",
+    "admin-dashboard",
+    "role-based-access",
+    "express",
+    "mongodb"
+  ],
   "author": "mohansaibolagani",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.3.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.3.2"
+  }
 }
