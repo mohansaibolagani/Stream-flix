@@ -1831,17 +1831,32 @@ function updateMyListBadge() {
   el.textContent = count;
 }
 
-// Catalog Rendering
+// Catalog Rendering & Billboard
 function renderBillboard(featured) {
   if (!featured) return;
+  currentActiveMedia = featured;
+
   const titleEl = document.getElementById("billboard-title");
   const descEl = document.getElementById("billboard-desc");
-  const playBtn = document.getElementById("billboard-play-btn");
-  const infoBtn = document.getElementById("billboard-info-btn");
+  const badgeEl = document.getElementById("billboard-badge");
+  const matchEl = document.getElementById("billboard-match");
+  const ratingEl = document.getElementById("billboard-rating");
+  const durationEl = document.getElementById("billboard-duration");
+  const genresEl = document.getElementById("billboard-genres");
+  const backdropEl = document.getElementById("billboard-backdrop");
   const video = document.getElementById("billboard-video");
 
   if (titleEl) titleEl.textContent = featured.title;
   if (descEl) descEl.textContent = featured.description;
+  if (badgeEl) badgeEl.textContent = featured.badge || "TOP 10 IN TV SHOWS TODAY";
+  if (matchEl) matchEl.textContent = `${featured.matchScore || 98}% Match`;
+  if (ratingEl) ratingEl.textContent = featured.rating || "TV-MA";
+  if (durationEl) durationEl.textContent = featured.duration || featured.durationOrSeasons || "4 Seasons";
+  if (genresEl) genresEl.textContent = (featured.genres || []).slice(0, 3).join(" • ");
+
+  if (backdropEl) {
+    backdropEl.style.backgroundImage = `url('${featured.backdropUrl || featured.posterUrl}')`;
+  }
 
   if (video && featured.videoUrl) {
     const srcEl = video.querySelector("source");
@@ -1852,75 +1867,119 @@ function renderBillboard(featured) {
     }
   }
 
-  if (playBtn) {
-    playBtn.onclick = () => openVideoPlayer(featured.title, featured._id || featured.id, featured.videoUrl);
+  updateBillboardMyListButton();
+}
+
+function updateBillboardMyListButton() {
+  const btn = document.getElementById("billboard-mylist-btn");
+  if (!currentActiveMedia || !btn) return;
+  const isSaved = isMediaSaved(currentActiveMedia._id || currentActiveMedia.id);
+  if (isSaved) {
+    btn.classList.add("active");
+    btn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>`;
+  } else {
+    btn.classList.remove("active");
+    btn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>`;
   }
-  if (infoBtn) {
-    infoBtn.onclick = () => openMediaDetail(featured);
+}
+
+function toggleBillboardMyList() {
+  if (currentActiveMedia) {
+    toggleMediaInWatchlist(currentActiveMedia);
+    updateBillboardMyListButton();
   }
+}
+
+function playBillboard() {
+  if (currentActiveMedia) {
+    openVideoPlayer(currentActiveMedia.title, currentActiveMedia._id || currentActiveMedia.id, currentActiveMedia.videoUrl);
+  }
+}
+
+function openBillboardDetail() {
+  if (currentActiveMedia) {
+    openMediaDetail(currentActiveMedia);
+  }
+}
+
+function openMediaDetailById(id) {
+  const item = catalog.find(m => String(m.id) === String(id) || String(m._id) === String(id));
+  if (item) openMediaDetail(item);
+}
+
+function scrollCarousel(id, offset) {
+  const track = document.getElementById(id);
+  if (track) track.scrollBy({ left: offset, behavior: "smooth" });
 }
 
 function renderCards(items) {
   return items.map(item => {
-    const isSaved = isMediaSaved(item._id || item.id);
-    const safeTitle = (item.title || "Title").replace(/'/g, "\\'");
     const id = item._id || item.id;
+    const duration = item.durationOrSeasons || item.duration || "2h";
     return `
-      <div class="media-card" onclick="openMediaDetail(catalog.find(m => String(m.id) === '${id}' || String(m._id) === '${id}'))">
-        <img class="card-thumb" src="${item.posterUrl}" alt="${item.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&q=80'" />
-        <div class="card-overlay">
-          <div class="card-buttons">
-            <button class="btn btn-icon btn-sm btn-play" onclick="event.stopPropagation(); openVideoPlayer('${safeTitle}', '${id}', '${item.videoUrl || ""}')" title="Play Video">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            </button>
-            <button class="btn btn-icon btn-sm ${isSaved ? "active" : ""}" onclick="event.stopPropagation(); toggleCardWatchlist('${id}')" title="Add to Watchlist">
-              ${isSaved ?
-                '<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>' :
-                '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>'
-              }
-            </button>
-            <button class="btn btn-icon btn-sm" onclick="event.stopPropagation(); openMediaDetail(catalog.find(m => String(m.id) === '${id}' || String(m._id) === '${id}'))" title="Details">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-          </div>
+      <div class="media-card" onclick="openMediaDetailById('${id}')">
+        <img class="media-poster" src="${item.posterUrl}" alt="${item.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&q=80'" />
+        ${item.badge ? `<span class="media-card-badge">${item.badge}</span>` : ""}
+        <div class="media-card-overlay">
           <div class="card-title">${item.title}</div>
           <div class="card-meta">
-            <span class="card-match">${item.matchScore || 97}% Match</span>
-            <span class="card-rating">${item.rating || "TV-MA"}</span>
-            <span class="card-duration">${item.duration || "2h"}</span>
+            <span class="match-score">${item.matchScore || 97}%</span>
+            <span>${duration}</span>
+            <span class="rating-tag">${item.rating || "TV-MA"}</span>
           </div>
-          <div class="card-genres">${(item.genres || []).slice(0, 3).join(" • ")}</div>
         </div>
       </div>
     `;
   }).join("");
 }
 
-async function toggleCardWatchlist(id) {
-  const item = catalog.find(m => String(m.id) === String(id) || String(m._id) === String(id));
-  if (!item) return;
-  await toggleMediaInWatchlist(item);
-  renderCatalogRows();
-  updateModalMyListButton();
+function renderTop10Cards(items) {
+  return items.map((item, i) => {
+    const id = item._id || item.id;
+    return `
+      <div class="top-10-card" onclick="openMediaDetailById('${id}')">
+        <div class="rank-number">${i + 1}</div>
+        <img class="top-10-poster" src="${item.posterUrl}" alt="${item.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&q=80'" />
+      </div>
+    `;
+  }).join("");
 }
 
-function renderRow(containerId, items) {
-  const container = document.getElementById(containerId);
-  if (container) {
-    container.innerHTML = renderCards(items);
-  }
-}
+// Render dynamic Netflix-style horizontal rows
+function renderContentRows() {
+  const container = document.getElementById("main-content");
+  if (!container) return;
+  container.innerHTML = "";
 
-function renderCatalogRows() {
-  const trending = catalog.filter(m => m.trending);
-  const tvShows = catalog.filter(m => m.type === "tv");
-  const movies = catalog.filter(m => m.type === "movie");
-  const originals = catalog.filter(m => m.original);
+  const sections = [
+    { title: "Trending Now", items: catalog },
+    { title: "Top 10 in TV & Movies Today", items: catalog.slice(0, 10), isTop10: true },
+    { title: "Popular TV Shows", items: catalog.filter(m => m.type === "tv" || m.type === "TV_SHOW") },
+    { title: "Blockbuster Movies", items: catalog.filter(m => m.type === "movie" || m.type === "MOVIE") },
+    { title: "Sci-Fi & Cyberpunk", items: catalog.filter(m => (m.genres || []).some(g => g.includes("Sci-Fi") || g.includes("Cyberpunk") || g.includes("Anime"))) },
+    { title: "Action & Thrillers", items: catalog.filter(m => (m.genres || []).some(g => g.includes("Action") || g.includes("Thriller") || g.includes("Crime"))) }
+  ];
 
-  renderRow("row-trending", trending.length ? trending : catalog.slice(0, 6));
-  renderRow("row-tv", tvShows.length ? tvShows : catalog.slice(2, 8));
-  renderRow("row-movies", movies.length ? movies : catalog.slice(4, 10));
-  renderRow("row-originals", originals.length ? originals : catalog.slice(1, 7));
+  sections.forEach((sec, idx) => {
+    if (sec.items.length === 0) return;
+
+    const secEl = document.createElement("section");
+    secEl.className = "media-section";
+
+    secEl.innerHTML = `
+      <h2 class="section-heading">${sec.title}</h2>
+      <div class="carousel-wrapper">
+        <button class="carousel-nav-btn carousel-prev" onclick="scrollCarousel('track-${idx}', -450)" aria-label="Previous">&lt;</button>
+        <div class="carousel-track" id="track-${idx}">
+          ${sec.isTop10 ? renderTop10Cards(sec.items) : renderCards(sec.items)}
+        </div>
+        <button class="carousel-nav-btn carousel-next" onclick="scrollCarousel('track-${idx}', 450)" aria-label="Next">&gt;</button>
+      </div>
+    `;
+
+    container.appendChild(secEl);
+  });
+
   updateMyListBadge();
 }
 
@@ -1935,9 +1994,10 @@ function filterBySection(type) {
   const searchResults = document.getElementById("search-results");
 
   if (type === "all") {
-    if (billboard) billboard.style.display = "block";
+    if (billboard) billboard.style.display = "flex";
     if (mainContent) mainContent.style.display = "block";
     if (searchResults) searchResults.style.display = "none";
+    renderContentRows();
     return;
   }
 
@@ -1946,15 +2006,15 @@ function filterBySection(type) {
   if (searchResults) searchResults.style.display = "block";
 
   if (type === "tv") {
-    showFilteredGrid("TV Shows & Series", catalog.filter(m => m.type === "tv"));
+    showFilteredGrid("TV Shows & Series", catalog.filter(m => m.type === "tv" || m.type === "TV_SHOW"));
   } else if (type === "movies") {
-    showFilteredGrid("Blockbuster Movies", catalog.filter(m => m.type === "movie"));
+    showFilteredGrid("Blockbuster Movies", catalog.filter(m => m.type === "movie" || m.type === "MOVIE"));
   } else if (type === "upcoming") {
-    showFilteredGrid("New & Upcoming Releases", catalog.slice(0, 6));
+    showFilteredGrid("New & Upcoming Releases", catalog.slice(0, 10));
   } else if (type === "mylist") {
     const mySavedIds = currentUser && currentUser.watchlist ? currentUser.watchlist.map(w => String(w.mediaId)) : myList.map(String);
     const myItems = catalog.filter(m => mySavedIds.includes(String(m.id)) || mySavedIds.includes(String(m._id)));
-    showFilteredGrid(myItems.length ? "Watchlist" : "Watchlist (Empty)", myItems);
+    showFilteredGrid(myItems.length ? "Watchlist" : "Watchlist (Empty - Add shows or movies using the + button)", myItems);
   }
 }
 
@@ -1974,9 +2034,10 @@ function handleSearch(query) {
   const searchResults = document.getElementById("search-results");
 
   if (!query) {
-    if (billboard) billboard.style.display = "block";
+    if (billboard) billboard.style.display = "flex";
     if (mainContent) mainContent.style.display = "block";
     if (searchResults) searchResults.style.display = "none";
+    renderContentRows();
     return;
   }
 
@@ -2032,9 +2093,9 @@ async function fetchLiveCatalog() {
     // Rely on pre-seeded catalog
   }
 
-  const featured = catalog.find(m => m.id === "st" || m.title.includes("Stranger")) || catalog[0];
+  const featured = catalog.find(m => m.id === "st" || m.id === "stranger-things" || m.title.includes("Stranger")) || catalog[0];
   renderBillboard(featured);
-  renderCatalogRows();
+  renderContentRows();
 }
 
 // Scroll Listener for Navbar Transparency
