@@ -1777,3 +1777,15 @@ body {
 .modal-inner-padding {
   padding: 10px;
 }
+/* Video Background & Player Enhancements */
+.billboard-video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0.65;
+  transition: opacity 0.5s ease;
+}

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -108,6 +108,9 @@
   <!-- ========================================== -->
   <div id="home-view" class="app-view active-view">
     <section class="billboard" id="billboard">
+      <video id="billboard-video" class="billboard-video-bg" autoplay muted loop playsinline>
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4" />
+      </video>
       <div class="billboard-backdrop" id="billboard-backdrop"></div>
       <div class="billboard-gradient-bottom"></div>
       <div class="billboard-gradient-left"></div>
@@ -146,6 +149,9 @@
               <line x1="12" y1="5" x2="12" y2="19"></line>
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
+          </button>
+          <button class="btn btn-icon" id="billboard-sound-btn" onclick="toggleBillboardSound()" title="Mute / Unmute Trailer Audio">
+            <span id="sound-icon">🔇</span>
           </button>
         </div>
       </div>
