@@ -25,7 +25,7 @@ const defaultCatalog = [
     type: "tv",
     posterUrl: "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=800&auto=format&fit=crop&q=80",
     backdropUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200&auto=format&fit=crop&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+    videoUrl: "https://media.w3.org/2010/05/sintel/trailer.mp4",
     description: "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.",
     matchScore: 98,
     rating: "TV-14",
@@ -37,9 +37,9 @@ const defaultCatalog = [
     trending: true,
     original: true,
     episodes: [
-      { number: 1, title: "Chapter One: The Vanishing of Will Byers", duration: "48m", description: "On his way home from a friend's house, young Will sees something terrifying.", thumbnailUrl: "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=400&q=80", videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" },
-      { number: 2, title: "Chapter Two: The Weirdo on Maple Street", duration: "55m", description: "Lucas, Mike and Dustin try to talk to the girl they found in the woods.", thumbnailUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&q=80", videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
-      { number: 3, title: "Chapter Three: Holly, Jolly", duration: "51m", description: "An increasingly concerned Joyce believes Will is trying to communicate with her.", thumbnailUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80", videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" }
+      { number: 1, title: "Chapter One: The Vanishing of Will Byers", duration: "48m", description: "On his way home from a friend's house, young Will sees something terrifying.", thumbnailUrl: "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=400&q=80", videoUrl: "https://media.w3.org/2010/05/sintel/trailer.mp4" },
+      { number: 2, title: "Chapter Two: The Weirdo on Maple Street", duration: "55m", description: "Lucas, Mike and Dustin try to talk to the girl they found in the woods.", thumbnailUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&q=80", videoUrl: "https://vjs.zencdn.net/v/oceans.mp4" },
+      { number: 3, title: "Chapter Three: Holly, Jolly", duration: "51m", description: "An increasingly concerned Joyce believes Will is trying to communicate with her.", thumbnailUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80", videoUrl: "https://media.w3.org/2010/05/bunny/trailer.mp4" }
     ]
   },
   {
@@ -48,7 +48,7 @@ const defaultCatalog = [
     type: "tv",
     posterUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800&auto=format&fit=crop&q=80",
     backdropUrl: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200&auto=format&fit=crop&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    videoUrl: "https://media.w3.org/2010/05/bunny/trailer.mp4",
     description: "In a dystopia riddled with corruption and cybernetic implants, a talented but reckless street kid strives to become an outlaw mercenary.",
     matchScore: 97,
     rating: "TV-MA",
@@ -60,7 +60,7 @@ const defaultCatalog = [
     trending: true,
     original: true,
     episodes: [
-      { number: 1, title: "Let You Down", duration: "25m", description: "David Martinez dreams of making something of himself in Night City.", thumbnailUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80", videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" }
+      { number: 1, title: "Let You Down", duration: "25m", description: "David Martinez dreams of making something of himself in Night City.", thumbnailUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80", videoUrl: "https://media.w3.org/2010/05/bunny/trailer.mp4" }
     ]
   },
   {
@@ -69,7 +69,7 @@ const defaultCatalog = [
     type: "tv",
     posterUrl: "https://images.unsplash.com/photo-1509281373149-e957c6296406?w=800&auto=format&fit=crop&q=80",
     backdropUrl: "https://images.unsplash.com/photo-1514539079130-25950c84af65?w=1200&auto=format&fit=crop&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+    videoUrl: "https://media.w3.org/2010/05/sintel/trailer.mp4",
     description: "Smart, sarcastic and a little dead inside, Wednesday Addams investigates a murder spree while making new friends and foes at Nevermore Academy.",
     matchScore: 96,
     rating: "TV-14",
@@ -87,7 +87,7 @@ const defaultCatalog = [
     type: "movie",
     posterUrl: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&auto=format&fit=crop&q=80",
     backdropUrl: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1200&auto=format&fit=crop&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    videoUrl: "https://vjs.zencdn.net/v/oceans.mp4",
     description: "World-famous detective Benoit Blanc heads to Greece to peel back the layers of a mystery surrounding a tech billionaire and his eclectic crew of friends.",
     matchScore: 94,
     rating: "PG-13",
@@ -105,7 +105,7 @@ const defaultCatalog = [
     type: "tv",
     posterUrl: "https://images.unsplash.com/photo-1563089145-599997674d42?w=800&auto=format&fit=crop&q=80",
     backdropUrl: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1200&auto=format&fit=crop&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    videoUrl: "https://media.w3.org/2010/05/bunny/trailer.mp4",
     description: "Amid the discord of twin cities Piltover and Zaun, two sisters fight on rival sides of a war between magic technologies and incompatible convictions.",
     matchScore: 99,
     rating: "TV-14",
@@ -123,7 +123,7 @@ const defaultCatalog = [
     type: "tv",
     posterUrl: "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?w=800&auto=format&fit=crop&q=80",
     backdropUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&auto=format&fit=crop&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4",
+    videoUrl: "https://media.w3.org/2010/05/bunny/trailer.mp4",
     description: "Eight thieves take hostages and lock themselves in the Royal Mint of Spain as a criminal mastermind manipulates the police to carry out his plan.",
     matchScore: 97,
     rating: "TV-MA",
@@ -141,7 +141,7 @@ const defaultCatalog = [
     type: "tv",
     posterUrl: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=800&auto=format&fit=crop&q=80",
     backdropUrl: "https://images.unsplash.com/photo-1586165368502-1bad197a6461?w=1200&auto=format&fit=crop&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+    videoUrl: "https://media.w3.org/2010/05/sintel/trailer.mp4",
     description: "In a 1950s orphanage, a young girl reveals an astonishing talent for chess and begins an unlikely journey to stardom while grappling with addiction.",
     matchScore: 98,
     rating: "TV-MA",
@@ -159,7 +159,7 @@ const defaultCatalog = [
     type: "tv",
     posterUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=80",
     backdropUrl: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=1200&auto=format&fit=crop&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+    videoUrl: "https://media.w3.org/2010/05/sintel/trailer.mp4",
     description: "This sci-fi anthology series explores a twisted, high-tech near-future where humanity's greatest innovations and darkest instincts collide.",
     matchScore: 95,
     rating: "TV-MA",
@@ -177,7 +177,7 @@ const defaultCatalog = [
     type: "movie",
     posterUrl: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&auto=format&fit=crop&q=80",
     backdropUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200&auto=format&fit=crop&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    videoUrl: "https://vjs.zencdn.net/v/oceans.mp4",
     description: "Back from the brink of death, highly skilled commando Tyler Rake takes on another high-stakes mission: rescuing the battered family of a ruthless gangster.",
     matchScore: 92,
     rating: "R",
@@ -195,7 +195,7 @@ const defaultCatalog = [
     type: "movie",
     posterUrl: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&auto=format&fit=crop&q=80",
     backdropUrl: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1200&auto=format&fit=crop&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    videoUrl: "https://vjs.zencdn.net/v/oceans.mp4",
     description: "An FBI profiler pursuing the world's most wanted art thief becomes his reluctant partner in crime to catch an elusive crook.",
     matchScore: 91,
     rating: "PG-13",
@@ -213,7 +213,7 @@ const defaultCatalog = [
     type: "tv",
     posterUrl: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
     backdropUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200&auto=format&fit=crop&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+    videoUrl: "https://media.w3.org/2010/05/sintel/trailer.mp4",
     description: "A missing child sets four families on a frantic hunt for answers as they unearth a mind-bending mystery that spans three generations.",
     matchScore: 99,
     rating: "TV-MA",
@@ -231,7 +231,7 @@ const defaultCatalog = [
     type: "movie",
     posterUrl: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&auto=format&fit=crop&q=80",
     backdropUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=80",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+    videoUrl: "https://vjs.zencdn.net/v/oceans.mp4",
     description: "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft to find a new home.",
     matchScore: 99,
     rating: "PG-13",
@@ -1662,20 +1662,33 @@ async function openVideoPlayer(title, mediaId = null, videoUrl = null) {
 
   if (titleEl) titleEl.textContent = title || "Now Playing";
 
-  if (video) {
-    if (!videoUrl && mediaId) {
-      const item = catalog.find(m => String(m.id) === String(mediaId) || String(m._id) === String(mediaId));
-      if (item && item.videoUrl) {
-        videoUrl = item.videoUrl;
-      }
+  if (!videoUrl && mediaId) {
+    const item = catalog.find(m => String(m.id) === String(mediaId) || String(m._id) === String(mediaId));
+    if (item && item.videoUrl) {
+      videoUrl = item.videoUrl;
     }
+  }
 
-    const streamSource = videoUrl || "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4";
-    if (video.src !== streamSource) {
+  const streamSource = videoUrl || "https://media.w3.org/2010/05/sintel/trailer.mp4";
+
+  if (video) {
+    try {
+      video.pause();
+      video.innerHTML = `<source src="${streamSource}" type="video/mp4">Your browser does not support HTML5 video.`;
       video.src = streamSource;
+      video.currentTime = 0;
+      video.load();
+
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          video.muted = true;
+          video.play().catch(e => console.warn("User interaction needed for audio:", e));
+        });
+      }
+    } catch (e) {
+      console.warn("Video stream load error handled:", e);
     }
-    video.currentTime = 0;
-    video.play().catch(() => {});
   }
 
   if (modal) modal.style.display = "flex";
@@ -1916,11 +1929,17 @@ function renderCards(items) {
   return items.map(item => {
     const id = item._id || item.id;
     const duration = item.durationOrSeasons || item.duration || "2h";
+    const safeTitle = (item.title || "Movie").replace(/'/g, "\\'");
     return `
       <div class="media-card" onclick="openMediaDetailById('${id}')">
         <img class="media-poster" src="${item.posterUrl}" alt="${item.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&q=80'" />
         ${item.badge ? `<span class="media-card-badge">${item.badge}</span>` : ""}
         <div class="media-card-overlay">
+          <div class="card-play-action">
+            <button class="btn-play-card" onclick="event.stopPropagation(); openVideoPlayer('${safeTitle}', '${id}', '${item.videoUrl || ""}')" title="Play Now">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
+          </div>
           <div class="card-title">${item.title}</div>
           <div class="card-meta">
             <span class="match-score">${item.matchScore || 97}%</span>

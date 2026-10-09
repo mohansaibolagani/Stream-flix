@@ -512,11 +512,38 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   z-index: 2;
+  pointer-events: none;
 }
 
 .media-card:hover .media-card-overlay,
 .media-card:hover .card-overlay {
   opacity: 1;
+}
+
+.card-play-action {
+  margin-bottom: 8px;
+}
+
+.btn-play-card {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #000000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  pointer-events: auto;
+}
+
+.btn-play-card:hover {
+  transform: scale(1.15);
+  background: var(--primary-red);
+  color: #ffffff;
 }
 
 .card-title {

@@ -109,7 +109,7 @@
     <section class="billboard" id="billboard">
       <div class="billboard-backdrop" id="billboard-backdrop"></div>
       <video id="billboard-video" class="billboard-video-bg" autoplay muted loop playsinline>
-        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4" />
+        <source src="https://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4" />
       </video>
       <div class="billboard-gradient-bottom"></div>
       <div class="billboard-gradient-left"></div>
@@ -701,15 +701,15 @@
   </div>
 
   <!-- Video Player Modal -->
-  <div class="video-modal-overlay" id="video-modal">
+  <div class="video-modal-overlay" id="video-modal" onclick="closeVideoOnBackdrop(event)">
     <div class="video-modal-content">
       <div class="video-player-header">
         <h3 id="video-player-title">Now Playing</h3>
         <button class="video-close-btn" onclick="closeVideoPlayer()">✕</button>
       </div>
       <div class="video-wrapper">
-        <video id="main-video" controls autoplay>
-          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+        <video id="main-video" controls autoplay playsinline>
+          <source src="https://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4" />
           Your browser does not support HTML5 video.
         </video>
       </div>
